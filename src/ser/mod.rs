@@ -175,6 +175,7 @@ impl<'a, W: Write, O: Options> serde::Serializer for &'a mut Serializer<W, O> {
         _variant: &'static str,
         _len: usize,
     ) -> Result<Self::SerializeTupleVariant> {
+        println!("What the hell goes into this thing? {}", variant);
         <O::Length>::serialize_discriminant(self, variant_index)?;
         Ok(Compound { ser: self })
     }
