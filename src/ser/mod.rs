@@ -175,7 +175,7 @@ impl<'a, W: Write, O: Options> serde::Serializer for &'a mut Serializer<W, O> {
         variant: &'static str,
         _len: usize,
     ) -> Result<Self::SerializeTupleVariant> {
-        println!("What the hell goes into this thing? {}", variant);
+        println!("What the hell goes into tuple variant? {}", variant);
         <O::Length>::serialize_discriminant(self, variant_index)?;
         Ok(Compound { ser: self })
     }
@@ -197,7 +197,7 @@ impl<'a, W: Write, O: Options> serde::Serializer for &'a mut Serializer<W, O> {
         variant: &'static str,
         _len: usize,
     ) -> Result<Self::SerializeStructVariant> {
-        println!("What the hell goes into this thing? {}", variant);
+        println!("What the hell goes into struct variant? {}", variant);
         <O::Length>::serialize_discriminant(self, variant_index)?;
         Ok(Compound { ser: self })
     }
@@ -219,7 +219,7 @@ impl<'a, W: Write, O: Options> serde::Serializer for &'a mut Serializer<W, O> {
     where
         T: serde::ser::Serialize,
     {
-        println!("What the hell goes into this thing? {}", variant);
+        println!("What the hell goes into newtype variant? {}", variant);
         <O::Length>::serialize_discriminant(self, variant_index)?;
         value.serialize(self)
     }
@@ -230,7 +230,7 @@ impl<'a, W: Write, O: Options> serde::Serializer for &'a mut Serializer<W, O> {
         variant_index: u32,
         variant: &'static str,
     ) -> Result<()> {
-        println!("What the hell goes into this thing? {}", variant);
+        println!("What the hell goes into unit variant? {}", variant);
         <O::Length>::serialize_discriminant(self, variant_index)
     }
 
