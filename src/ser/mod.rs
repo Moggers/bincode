@@ -213,12 +213,13 @@ impl<'a, W: Write, O: Options> serde::Serializer for &'a mut Serializer<W, O> {
         self,
         _name: &'static str,
         variant_index: u32,
-        _variant: &'static str,
+        variant: &'static str,
         value: &T,
     ) -> Result<()>
     where
         T: serde::ser::Serialize,
     {
+        println!("What the hell goes into this thing? {}", variant);
         <O::Length>::serialize_discriminant(self, variant_index)?;
         value.serialize(self)
     }
@@ -227,8 +228,9 @@ impl<'a, W: Write, O: Options> serde::Serializer for &'a mut Serializer<W, O> {
         self,
         _name: &'static str,
         variant_index: u32,
-        _variant: &'static str,
+        variant: &'static str,
     ) -> Result<()> {
+        println!("What the hell goes into this thing? {}", variant);
         <O::Length>::serialize_discriminant(self, variant_index)
     }
 
